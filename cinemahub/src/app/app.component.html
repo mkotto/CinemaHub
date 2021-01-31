@@ -1,13 +1,4 @@
-<div>
-  {{title}}
-</div>
-<h2>Movie Data</h2>
-<img *ngIf="!movies" class="img-fixed-size" src="https://www.wpfaster.org/wp-content/uploads/2013/06/loading-gif.gif"/>
-<div *ngIf="movies?.length === 0">
-  nothing to show
-</div>
-<div *ngFor="let movie of movies; let index = index">
-  <div>{{movie.title | uppercase}}</div>
-  <div>{{movie.release | date: "dd MMMM yyyy"}}</div>
-  <div>{{movie.price | currency: "NOK"}}</div>
-</div>
+<h3>Currently</h3>
+<app-movies-list [movies]="current"></app-movies-list>
+<h3>Coming soon</h3>
+<app-movies-list [movies]="comingsoon"></app-movies-list>

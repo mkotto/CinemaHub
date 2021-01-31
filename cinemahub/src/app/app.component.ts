@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   ngOnInit(): void {
     setTimeout(()=>{
-      this.movies = [
+      this.current = [
         {
         title: "spider man",
         release: new Date,
@@ -21,9 +21,23 @@ export class AppComponent implements OnInit{
         price: 140.99
       }
     ];
+
+    this.comingsoon = [
+      {
+      title: "Gentlemen",
+      release: new Date('2020-02-15'),
+      price: 140.99
+    },
+    {
+      title: "Scott Pilgrim vs The World",
+      release: new Date('2007-09-12'),
+      price: 140.99
+    }
+  ];
     }, 1000);
   }
-  movies;
+  current;
+  comingsoon;
   title = 'cinemahub';
 
 }
