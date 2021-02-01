@@ -13,5 +13,7 @@ export class MoviesListComponent implements OnInit {
   }
   @Input()
   movies;
-
+  onClickRemove(index: number){
+    this.movies.splice(index, 1);
+  }
 }

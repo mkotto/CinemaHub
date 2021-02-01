@@ -3,7 +3,9 @@
   nothing to show
 </div>
 <div *ngFor="let movie of movies; let index = index">
-  <div>{{movie.title | uppercase}}</div>
+  <div>{{movie.title | uppercase}}
+    <button (click)="onClickRemove(index)">Remove</button>
+  </div>
   <div>{{movie.release | date: "dd MMMM yyyy"}}</div>
   <div>{{movie.price | currency: "NOK"}}</div>
 </div>
