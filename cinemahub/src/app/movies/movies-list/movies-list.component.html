@@ -2,10 +2,12 @@
 <div *ngIf="movies?.length === 0">
   nothing to show
 </div>
-<div *ngFor="let movie of movies; let index = index">
-  <div>{{movie.title | uppercase}}
-    <button (click)="onClickRemove(index)">Remove</button>
+<ng-container *ngIf="movies && movies.length > 0">
+  <div *ngFor="let movie of movies; let index = index">
+    <div>{{movie.title | uppercase}}
+      <button (click)="onClickRemove(index)">Remove</button>
+    </div>
+    <div>{{movie.release | date: "dd MMMM yyyy"}}</div>
+    <div>{{movie.price | currency: "NOK"}}</div>
   </div>
-  <div>{{movie.release | date: "dd MMMM yyyy"}}</div>
-  <div>{{movie.price | currency: "NOK"}}</div>
-</div>
+</ng-container>
