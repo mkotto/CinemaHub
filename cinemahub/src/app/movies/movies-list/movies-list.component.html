@@ -1,13 +1,17 @@
-<img *ngIf="!movies" class="img-fixed-size" src="https://www.wpfaster.org/wp-content/uploads/2013/06/loading-gif.gif"/>
-<div *ngIf="movies?.length === 0">
-  nothing to show
-</div>
-<ng-container *ngIf="movies && movies.length > 0">
-  <div *ngFor="let movie of movies; let index = index">
-    <div>{{movie.title | uppercase}}
-      <button (click)="onClickRemove(index)">Remove</button>
+<app-generic-list [list]="movies">
+  <!-- <ng-container loading>
+    this is loading...
+  </ng-container>
+  <ng-container empty>
+    There is no <b>content</b> to display
+  </ng-container> -->
+  <ng-container content>
+    <div *ngFor="let movie of movies; let index = index">
+      <div>{{movie.title | uppercase}}
+        <button (click)="onClickRemove(index)">Remove</button>
+      </div>
+      <div>{{movie.release | date: "dd MMMM yyyy"}}</div>
+      <div>{{movie.price | currency: "NOK"}}</div>
     </div>
-    <div>{{movie.release | date: "dd MMMM yyyy"}}</div>
-    <div>{{movie.price | currency: "NOK"}}</div>
-  </div>
-</ng-container>
+  </ng-container>
+</app-generic-list>
