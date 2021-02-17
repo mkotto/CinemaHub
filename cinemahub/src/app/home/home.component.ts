@@ -41,6 +41,8 @@ export class HomeComponent implements OnInit {
   current;
   comingsoon;
 
+  panelOpenState = false;
+
 
   handleRating(rate: number) {
     alert(`The user selected ${rate}`);
