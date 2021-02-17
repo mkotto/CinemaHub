@@ -6,12 +6,24 @@
     There is no <b>content</b> to display
   </ng-container> -->
   <ng-container content>
-    <div *ngFor="let movie of movies; let index = index">
-      <div>{{movie.title | uppercase}}
-        <button (click)="onClickRemove(index)">Remove</button>
+    <div class="movies-container">
+      <div *ngFor="let movie of movies; let index = index" class="movie-container">
+        <!-- <div>{{movie.title | uppercase}}
+          <button (click)="onClickRemove(index)">Remove</button>
+        </div>
+        <div>{{movie.release | date: "dd MMMM yyyy"}}</div>
+        <div>{{movie.price | currency: "NOK"}}</div> -->
+        <a>
+          <img [src]="movie.poster" alt="Poster"/>
+        </a>
+        <p>
+          <a>{{movie.title | uppercase}}</a>
+        </p>
+        <div>
+          <a mat-flat-button color="primary">Edit</a>
+          <button mat-flat-button color="warn">Delete</button>
+        </div>
       </div>
-      <div>{{movie.release | date: "dd MMMM yyyy"}}</div>
-      <div>{{movie.price | currency: "NOK"}}</div>
     </div>
   </ng-container>
 </app-generic-list>
