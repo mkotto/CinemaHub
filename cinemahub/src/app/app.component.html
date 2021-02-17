@@ -7,4 +7,4 @@
     <h3>Coming soon</h3>
     <app-movies-list [movies]="comingsoon"></app-movies-list>
 </div> -->
-<app-rating></app-rating>
+<app-rating (onRating)="handleRating($event)"></app-rating>

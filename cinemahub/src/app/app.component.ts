@@ -40,4 +40,9 @@ export class AppComponent implements OnInit{
   comingsoon;
   title = 'cinemahub';
 
+  handleRating(rate: number){
+    alert(`The user selected ${rate}`);
+    console.log(rate);
+  }
+
 }
