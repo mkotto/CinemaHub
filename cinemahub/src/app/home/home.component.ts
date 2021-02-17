@@ -48,4 +48,8 @@ export class HomeComponent implements OnInit {
     alert(`The user selected ${rate}`);
     console.log(rate);
   }
+
+  onClickDoor(){
+    console.log(`haha, it's not working!`);
+  }
 }
