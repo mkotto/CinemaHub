@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateActorComponent } from './actores/create-actor/create-actor.component';
+import { CreateActorComponent } from './actors/create-actor/create-actor.component';
 import { IndexActorsComponent } from './actors/index-actors/index-actors.component';
 import { CreateComponent } from './genres/create/create.component';
 import { HomeComponent } from './home/home.component';
