@@ -8,7 +8,6 @@ import { EditGenresComponent } from './genres/edit-genres/edit-genres.component'
 import { HomeComponent } from './home/home.component';
 import { IndexGenresComponent } from './index-genres/index-genres.component';
 import { CreateTheaterComponent } from './movie-theater/create-theater/create-theater.component';
-import { EditTheaterComponent } from './movie-theater/edit-theater/edit-theater.component';
 import { IndexTheaterComponent } from './movie-theater/index-theater/index-theater.component';
 import { CreateMovieComponent } from './movies/create-movie/create-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
@@ -28,7 +27,7 @@ const routes: Routes = [
 
   { path: 'theaters', component: IndexTheaterComponent},
   { path: 'theaters/create', component: CreateTheaterComponent },
-  { path: 'theaters/edit/:id', component: EditTheaterComponent },
+  // { path: 'theaters/edit/:id', component: EditTheaterComponent },
   
 
   // { path: 'movies', component: MoviesListComponent},
