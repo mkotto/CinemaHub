@@ -30,9 +30,9 @@ const routes: Routes = [
   { path: 'theaters/create', component: CreateTheaterComponent },
   { path: 'theaters/edit/:id', component: EditTheaterComponent },
   
-
   // { path: 'movies', component: MoviesListComponent},
-  { path: 'movies/create', component: CreateMovieComponent }
+  { path: 'movies/create', component: CreateMovieComponent },
+  { path: '**', redirectTo: ''}
   
 ];
 
