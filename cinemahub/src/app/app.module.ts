@@ -26,7 +26,7 @@ import { CreateMovieComponent } from './movies/create-movie/create-movie.compone
 import { IndexTheaterComponent } from './movie-theater/index-theater/index-theater.component';
 import { CreateTheaterComponent } from './movie-theater/create-theater/create-theater.component';
 import { EditTheaterComponent } from './movie-theater/edit-theater/edit-theater.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +51,8 @@ import { EditTheaterComponent } from './movie-theater/edit-theater/edit-theater.
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
