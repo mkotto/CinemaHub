@@ -12,6 +12,7 @@ import { IndexTheaterComponent } from './movie-theater/index-theater/index-theat
 import { CreateMovieComponent } from './movies/create-movie/create-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { MoviesListComponent } from './movies/movies-list/movies-list.component';
+import { EditTheaterComponent } from './movie-theater/edit-theater/edit-theater.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,7 +28,7 @@ const routes: Routes = [
 
   { path: 'theaters', component: IndexTheaterComponent},
   { path: 'theaters/create', component: CreateTheaterComponent },
-  // { path: 'theaters/edit/:id', component: EditTheaterComponent },
+  { path: 'theaters/edit/:id', component: EditTheaterComponent },
   
 
   // { path: 'movies', component: MoviesListComponent},
