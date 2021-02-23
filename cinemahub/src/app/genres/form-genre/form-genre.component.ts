@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 // import EventEmitter from 'events';
@@ -16,6 +16,9 @@ export class FormGenreComponent implements OnInit {
 
   form: FormGroup;
 
+  @Input()
+  model: genreCreationDTO;
+
   @Output()
   onSaveChanges: EventEmitter<genreCreationDTO> = new EventEmitter<genreCreationDTO>();
 
@@ -25,6 +28,10 @@ export class FormGenreComponent implements OnInit {
         validators: [Validators.required, Validators.minLength(3), firstLetterUppercase]
       }]
     });
+
+    if(this.model !== undefined){
+      this.form.patchValue(this.model);
+    }
   }
 
   saveChanges(){
