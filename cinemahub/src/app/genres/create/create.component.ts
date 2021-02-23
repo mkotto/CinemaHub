@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { firstLetterUppercase } from '../../validators/firstletter';
+import { genreCreationDTO } from '../genres.model';
 
 @Component({
   selector: 'app-create',
@@ -10,12 +11,15 @@ import { firstLetterUppercase } from '../../validators/firstletter';
 })
 export class CreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
   }
 
-
+  saveChanges(genreCreationDTO: genreCreationDTO){
+    console.log(genreCreationDTO);
+    this.router.navigate(['/genres']);
+  }
 
 
 
