@@ -23,7 +23,7 @@ export class EditGenresComponent implements OnInit {
     );
   }
 
-  onSaveChanges(){
+  saveChanges(genreCreationDTO?: genreCreationDTO){
 
   }
 
