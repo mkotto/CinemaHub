@@ -10,6 +10,7 @@ export class MovieFilterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
 
+
   form: FormGroup;
   genres = [
     { id: 1, name: 'Drama' },
@@ -23,6 +24,8 @@ export class MovieFilterComponent implements OnInit {
     { title: 'Snatch', poster: 'https://m.media-amazon.com/images/M/MV5BMTA2NDYxOGYtYjU1Mi00Y2QzLTgxMTQtMWI1MGI0ZGQ5MmU4XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_UY268_CR0,0,182,268_AL_.jpg'}
   ];
 
+  originalMovies = this.movies;
+
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
@@ -32,10 +35,23 @@ export class MovieFilterComponent implements OnInit {
         inTheaters: false
       }
     );
+
+    this.form.valueChanges.subscribe(
+      values => {
+        this.movies = this.originalMovies;
+        this.filterMovies(values);
+      }
+    );
+  }
+
+  filterMovies(values: any){
+    if(values.title){
+      this.movies = this.movies.filter(movie => movie.title.indexOf(values.title) !== -1);
+    }
   }
 
   clearForm(){
-    
+    this.form.reset();
   }
 
 }
