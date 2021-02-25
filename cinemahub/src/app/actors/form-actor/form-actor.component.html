@@ -1,1 +1,13 @@
-<p>form-actor works!</p>
+<form [formGroup]="form">
+    <mat-form-field class="field-container">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput/>
+        <mat-error>required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="field-container ">
+        <mat-label></mat-label>
+        <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</form>
