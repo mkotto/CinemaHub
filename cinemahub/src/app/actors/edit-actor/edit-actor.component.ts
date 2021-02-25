@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { actorCreationDTO } from '../../models/actorDTO';
 
 @Component({
   selector: 'app-edit-actor',
@@ -10,6 +11,8 @@ export class EditActorComponent implements OnInit {
 
   tempval;
 
+  model: actorCreationDTO = { name: 'Brad Pit', dateOfBirth: new Date()};
+
   constructor(private activatedRoute: ActivatedRoute) { }
   
   ngOnInit(): void {
@@ -17,6 +20,10 @@ export class EditActorComponent implements OnInit {
       // alert(params.id);
       this.tempval = params.id;
     });
+  }
+
+  saveChanges(actor: actorCreationDTO){
+    console.log(actor);
   }
 
 }

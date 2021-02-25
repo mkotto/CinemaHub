@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { actorCreationDTO } from '../../models/actorDTO';
 
 @Component({
   selector: 'app-form-actor',
@@ -12,6 +13,12 @@ export class FormActorComponent implements OnInit {
 
   form: FormGroup;
 
+  @Input()
+  model: actorCreationDTO;
+
+  @Output()
+  onSaveChanges = new EventEmitter<actorCreationDTO>()
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', {
@@ -19,6 +26,15 @@ export class FormActorComponent implements OnInit {
       }],
       dateOfBirth: ''
     });
+
+    if(this.model !== undefined){
+      this.form.patchValue(this.model);
+    }
+  }
+
+  saveChanges(){
+    console.log('Saving changes');
+    this.onSaveChanges.emit(this.form.value);
   }
 
 }

@@ -1,4 +1,11 @@
-.field-container {
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
+form {
+    width: 500px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+button{
+    margin: 1rem;
 }
