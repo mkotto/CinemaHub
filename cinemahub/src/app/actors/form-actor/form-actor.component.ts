@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { actorCreationDTO } from '../../models/actorDTO';
+import { actorCreationDTO } from "../../models/actorCreationDTO";
 
 @Component({
   selector: 'app-form-actor',
@@ -25,7 +25,8 @@ export class FormActorComponent implements OnInit {
         validators: [Validators.required]
       }],
       dateOfBirth: '',
-      picture: ''
+      picture: '',
+      biography: ''
     });
 
     if(this.model !== undefined){
@@ -40,6 +41,10 @@ export class FormActorComponent implements OnInit {
 
   onImageSelected(image){
     this.form.get('picture').setValidators(image);
+  }
+
+  changeMarkdown(value){
+    this.form.get('biography').setValue(value);
   }
 
 }
