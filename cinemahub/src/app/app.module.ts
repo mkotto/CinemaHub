@@ -34,6 +34,8 @@ import { InputImgComponent } from './utilities/input-img/input-img.component';
 import { InputMarkdownComponent } from './utilities/input-markdown/input-markdown.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { TheaterFormComponent } from './movie-theater/theater-form/theater-form.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +69,8 @@ import { TheaterFormComponent } from './movie-theater/theater-form/theater-form.
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]
