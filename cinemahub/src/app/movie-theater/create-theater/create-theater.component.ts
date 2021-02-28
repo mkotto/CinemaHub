@@ -14,7 +14,7 @@ export class CreateTheaterComponent implements OnInit {
   }
 
   saveChanges(movieTheater: movieTheatersCreationDTO){
-    
+    console.log(movieTheater);
   }
 
 }

@@ -35,6 +35,7 @@ import { InputMarkdownComponent } from './utilities/input-markdown/input-markdow
 import { MarkdownModule } from 'ngx-markdown';
 import { TheaterFormComponent } from './movie-theater/theater-form/theater-form.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MapComponent } from './utilities/map/map.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     FormActorComponent,
     InputImgComponent,
     InputMarkdownComponent,
-    TheaterFormComponent
+    TheaterFormComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

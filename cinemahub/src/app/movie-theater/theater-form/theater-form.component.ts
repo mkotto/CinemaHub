@@ -26,12 +26,12 @@ export class TheaterFormComponent implements OnInit {
       ]
     });
 
-    if(this.model.name != undefined){
-      this.form.patchValue(this.model);
-    }
+    // if (this.model.name != undefined) {
+    //   this.form.patchValue(this.model);
+    // }
   }
 
-  saveChanges(){
+  saveChanges() {
     this.onSaveChanges.emit(this.form.value);
   }
 
