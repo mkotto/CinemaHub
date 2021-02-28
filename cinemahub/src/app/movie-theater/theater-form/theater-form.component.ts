@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { movieTheatersCreationDTO } from '../../models/movieTheaterCreationDTO';
 
@@ -12,6 +12,8 @@ export class TheaterFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   form: FormGroup;
+  @Input()
+  model: movieTheatersCreationDTO;
 
   @Output()
   onSaveChanges = new EventEmitter<movieTheatersCreationDTO>();
@@ -23,6 +25,10 @@ export class TheaterFormComponent implements OnInit {
         { validators: [Validators.required] }
       ]
     });
+
+    if(this.model.name != undefined){
+      this.form.patchValue(this.model);
+    }
   }
 
   saveChanges(){
