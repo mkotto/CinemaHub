@@ -13,17 +13,11 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   options = {
-    layers : 
-      [
-        tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
-        {
-          maxZoom: 18, 
-          attribution: 'helloman'
-        })],
+    layers: [
+      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Angular movies' })
+    ],
     zoom: 5,
-    center: latLng(46.8799966, -121.726909)
+    center: latLng(46.879966, -121.726909)
   };
-
 }
