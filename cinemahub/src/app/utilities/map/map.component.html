@@ -1,2 +1,2 @@
-<div leaflet [leafletOptions]="options">
+<div leaflet [leafletOptions]="options" [leafletLayers]="layers" (leafletClick)="handleMapClick($event)">
 </div>
