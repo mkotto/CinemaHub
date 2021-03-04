@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { movieTheatersCreationDTO } from '../../models/movieTheaterCreationDTO';
+import { coordinates } from '../../utilities/map/coordinate';
 
 @Component({
   selector: 'app-theater-form',
@@ -23,12 +24,24 @@ export class TheaterFormComponent implements OnInit {
       name: [
         '',
         { validators: [Validators.required] }
+      ],
+      longtitude: [
+        '',
+        {validators: [Validators.required]}
+      ],
+      latitude: [
+        '',
+        {validators: [Validators.required]}
       ]
     });
 
     // if (this.model.name != undefined) {
     //   this.form.patchValue(this.model);
     // }
+  }
+
+  onSelectedLocation(coordinates: coordinates){
+    this.form.patchValue(coordinates);
   }
 
   saveChanges() {

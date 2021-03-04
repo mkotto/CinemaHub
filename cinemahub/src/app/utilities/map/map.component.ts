@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+// import EventEmitter from 'events';
 import { tileLayer, latLng, LeafletMouseEvent, Marker, marker } from 'leaflet';
+import { coordinates } from './coordinate';
 // import { Map, Control, DomUtil, ZoomAnimEvent , Layer, MapOptions, tileLayer, latLng } from 'leaflet';
 // import L from 'leaflet';
 @Component({
@@ -13,6 +15,9 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @Output()
+  onSelectedLocation = new EventEmitter<coordinates>();
 
   
 
@@ -31,5 +36,6 @@ export class MapComponent implements OnInit {
     console.log(latitude + ' / ' + longtitude);
     this.layers = [];
     this.layers.push(marker([latitude, longtitude]));
+    this.onSelectedLocation.emit({latitude, longtitude});
   }
 }
