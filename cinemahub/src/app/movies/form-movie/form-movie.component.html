@@ -1,0 +1,23 @@
+<form (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input formControlName="title" matInput/>
+    </mat-form-field>
+    <div>
+        <mat-checkbox formControlName="inTheaters">In Theaters</mat-checkbox>
+    </div>
+    <mat-form-field>
+        <mat-label>Trailer</mat-label>
+        <input formControlName="trailer" matInput/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Release date</mat-label>
+        <input formControlName="releaseDate" matInput [matDatepicker]="picker"/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <h4>Poster</h4>
+        <app-input-img [urlCurrentImage]="model?.poster" (onImageSelected)="onImageSelected($event)"></app-input-img>
+        <h4>Summery</h4>
+        <app-input-markdown [markDownContent]="model?.summary" (changeMarkdown)="changeMarkdown($event)"></app-input-markdown>
+    </mat-form-field>
+</form>
