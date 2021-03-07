@@ -24,7 +24,14 @@ export class FormMovieComponent implements OnInit {
     { key: 3, value: 'Comedy' }
   ];
 
+  nonSeletedTheaters: multipleSelectorModel[] = [
+    { key: 1, value: 'Coliseum' },
+    { key: 2, value: 'Sandvika' },
+    { key: 3, value: 'Asker' }
+  ];
+
   selectedGenres: multipleSelectorModel[] = [];
+  selectedTheaters: multipleSelectorModel[] = [];
 
   form: FormGroup;
 
@@ -39,7 +46,8 @@ export class FormMovieComponent implements OnInit {
       release: '',
       releaseDate: '',
       poster: '',
-      genresIds: ''
+      genresIds: '',
+      movieTheatersIds: ''
     });
 
     if (this.model != undefined) {
@@ -50,6 +58,10 @@ export class FormMovieComponent implements OnInit {
   saveChanges() { 
     const genres = this.selectedGenres.map(value => value.key);
     this.form.get('genresIds').setValue(genres);
+
+    const movieTheatersIds = this.selectedTheaters.map(value => value.key);
+    this.form.get('movieTheatersIds').setValue(movieTheatersIds);
+
     this.onSaveChanges.emit(this.form.value);
   }
   onImageSelected(file: File) {

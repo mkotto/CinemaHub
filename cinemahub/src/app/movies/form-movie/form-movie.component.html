@@ -25,8 +25,11 @@
         <h4>Summery</h4>
         <app-input-markdown [markDownContent]="model?.summary" (changeMarkdown)="changeMarkdown($event)"></app-input-markdown>
     </div>
-
+    <h4>Select genres</h4>
     <app-multiple-selector [NonSelectedItems]="nonSelectedGenres" [SelectedItems]="selectedGenres"></app-multiple-selector>
+    <h4>Select theater</h4>
+    <app-multiple-selector [NonSelectedItems]="nonSeletedTheaters" [SelectedItems]="selectedTheaters"></app-multiple-selector>
+
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="saveChanges()">
             Savae changes
