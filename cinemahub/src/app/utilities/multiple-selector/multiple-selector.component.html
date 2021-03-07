@@ -3,8 +3,8 @@
         <li *ngFor="let item of NonSelectedItems; let index = index" (click)="select(item, index)">{{item.value}}</li>
     </ul>
     <div class="container-buttons">
-        <button type="button" (click)="selectAll()"><mat-icon>arrow_backward</mat-icon></button>
-        <button type="button" (click)="deselectAll()"><mat-icon>arrow_forward</mat-icon></button>
+        <button type="button" (click)="selectAll()"><mat-icon>arrow_forward</mat-icon></button>
+        <button type="button" (click)="deselectAll()"><mat-icon>arrow_backward</mat-icon></button>
     </div>
     <ul>
         <li *ngFor="let item of SelectedItems; let index = index" (click)="select(item, index)">{{item.value}}</li>
