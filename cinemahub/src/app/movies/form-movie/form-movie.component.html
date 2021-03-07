@@ -29,10 +29,10 @@
     <app-multiple-selector [NonSelectedItems]="nonSelectedGenres" [SelectedItems]="selectedGenres"></app-multiple-selector>
     <h4>Select theater</h4>
     <app-multiple-selector [NonSelectedItems]="nonSeletedTheaters" [SelectedItems]="selectedTheaters"></app-multiple-selector>
-
+    <app-actors-autocomplete></app-actors-autocomplete>
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="saveChanges()">
-            Savae changes
+            Save changes
         </button>
         <a mat-stroked-button routerLink="/">Cancel</a>
     </div>
