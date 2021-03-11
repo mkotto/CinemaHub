@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MoviesAPI.Entities;
+using System.Linq;
 namespace MoviesAPI.Services
 {
   public class InMemoryRepository : IRepository
@@ -19,5 +20,10 @@ namespace MoviesAPI.Services
     {
       return _genres;
     }
-  }
+
+        Genre IRepository.GetById(int id)
+        {
+            return _genres.FirstOrDefault(x => x.Id == id);
+        }
+    }
 }

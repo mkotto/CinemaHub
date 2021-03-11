@@ -8,5 +8,6 @@ namespace MoviesAPI.Entities
     public interface IRepository
     {
         List<Genre> GetAllGenres();
+        Genre GetById(int id);
     }
 }
