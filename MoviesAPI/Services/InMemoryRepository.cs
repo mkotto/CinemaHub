@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using MoviesAPI.Entities;
 using System.Linq;
+using System.Threading.Tasks;
+
 namespace MoviesAPI.Services
 {
   public class InMemoryRepository : IRepository
@@ -16,9 +18,10 @@ namespace MoviesAPI.Services
       };
     }
 
-    public List<Genre> GetAllGenres()
+    public async Task<List<Genre>> GetAllGenres()
     {
-      return _genres;
+            await Task.Delay(3000);
+            return _genres;
     }
 
         Genre IRepository.GetById(int id)

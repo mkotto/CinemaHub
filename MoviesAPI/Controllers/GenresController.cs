@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MoviesAPI.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MoviesAPI.Controllers
 {
@@ -18,9 +19,9 @@ namespace MoviesAPI.Controllers
         [HttpGet]
         [HttpGet("list")]
         [HttpGet("/allgenres")]
-        public ActionResult<List<Genre>> Get()
+        public async Task<ActionResult<List<Genre>>> Get()
         {
-            return repository.GetAllGenres();
+            return await repository.GetAllGenres();
         }
 
         [HttpGet("{id:int}/{param2=name}")]
