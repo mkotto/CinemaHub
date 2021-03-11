@@ -1,12 +1,11 @@
-﻿using MoviesAPI.Entities;
-using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using MoviesAPI.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MoviesAPI.Controllers
 {
-    public class GenresController
+    [Route("api/[controller]")]
+    public class GenresController : ControllerBase
     {
         private readonly IRepository repository;
 
@@ -14,5 +13,28 @@ namespace MoviesAPI.Controllers
         {
             this.repository = repository;
         }
+
+
+        [HttpGet]
+        public List<Genre> Get()
+        {
+            return repository.GetAllGenres();
+        }
+
+        public Genre GetById(int Id)
+        {
+            var genre = repository.GetById(Id);
+            if(genre == null)
+            {
+                //return NotFound();
+            }
+            return genre;
+        }
+        [HttpPost]
+        public void Post() { }
+        [HttpPut]
+        public void Put() { }
+        [HttpDelete]
+        public void Delte() { }
     }
 }
