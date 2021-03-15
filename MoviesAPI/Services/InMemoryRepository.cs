@@ -24,6 +24,12 @@ namespace MoviesAPI.Services
             return _genres;
     }
 
+        public void AddGenre(Genre genre)
+        {
+            genre.Id = _genres.Max(x => x.Id) + 1;
+            this._genres.Add(genre);
+        }
+
         Genre IRepository.GetById(int id)
         {
             return _genres.FirstOrDefault(x => x.Id == id);

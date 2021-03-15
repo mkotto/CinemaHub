@@ -50,6 +50,7 @@ namespace MoviesAPI.Controllers
         //}
         [HttpPost]
         public ActionResult Post([FromBody] Genre genre) {
+            repository.AddGenre(genre);
             return NoContent();
         }
         [HttpPut]
