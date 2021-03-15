@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.Logging;
 using MoviesAPI.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,10 +12,12 @@ namespace MoviesAPI.Controllers
     public class GenresController : ControllerBase
     {
         private readonly IRepository repository;
+        private readonly ILogger<GenresController> logger;
 
-        public GenresController(IRepository repository)
+        public GenresController(IRepository repository, ILogger<GenresController> logger)
         {
             this.repository = repository;
+            this.logger = logger;
         }
 
 
@@ -23,16 +26,20 @@ namespace MoviesAPI.Controllers
         [HttpGet("/allgenres")]
         public async Task<ActionResult<List<Genre>>> Get()
         {
+            this.logger.LogInformation("Getting all genres");
             return await repository.GetAllGenres();
         }
 
-        [HttpGet("{id:int}/{param2=name}")]
-        [HttpGet("{id:int}")]//api/genres/get
-        public ActionResult<Genre> GetById(int Id, [FromServices] string param)
+        //[HttpGet("{id:int}/{param2=name}")]
+        //[HttpGet("{id:int}")]//api/genres/get
+        [HttpGet("{Id:int}", Name = "getGenre")]
+        public ActionResult<Genre> GetById(int Id, string param)
         {
+            logger.LogDebug("getById method is executing");
             var genre = repository.GetById(Id);
             if (genre == null)
             {
+                this.logger.LogWarning($"Genre Id {Id} is not found");
                 return NotFound();
             }
             return genre;

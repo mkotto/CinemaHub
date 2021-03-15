@@ -21,6 +21,7 @@ namespace MoviesAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //services.AddMvcCore();
             services.AddSingleton<IRepository, InMemoryRepository>();
         }
 
