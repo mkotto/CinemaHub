@@ -39,40 +39,8 @@ namespace MoviesAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.Use(
-                    async (context, next) =>
-                    {
-                        using (var swapStream = new MemoryStream())
-                        {
-                            var originalResponseBody = context.Response.Body;
-                            context.Response.Body = swapStream;
-
-                            await next.Invoke();
-
-                            swapStream.Seek(0, SeekOrigin.Begin);
-                            string responseBody = new StreamReader(swapStream).ReadToEnd();
-                            swapStream.Seek(0, SeekOrigin.Begin);
-
-                            await swapStream.CopyToAsync(originalResponseBody);
-                            context.Response.Body = originalResponseBody;
-
-                            logger.LogInformation(responseBody);
-                        }
-                    }
-                );
-            app.Map(
-                "test", (app) =>
-                {
-                    app.Run(
-                    async context =>
-                        {
-                            await context.Response.WriteAsync("short circuiting the pipeline");
-                        }
-                    );
-                }
-              );
 
             if (env.IsDevelopment())
             {
