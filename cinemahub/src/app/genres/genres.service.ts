@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { genreDTO } from './genres.model';
 
 @Injectable({
@@ -6,9 +9,11 @@ import { genreDTO } from './genres.model';
 })
 export class GenresService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAll(): genreDTO[]{
-    return [{id: 1, name: 'Drama'}];
+  private apiURL = environment.apiURL + '/genres'; 
+
+  getAll(): Observable<genreDTO[]>{
+    return this.http.get<genreDTO[]>(this.apiURL);
   }
 }

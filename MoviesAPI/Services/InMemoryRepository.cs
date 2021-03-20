@@ -16,7 +16,8 @@ namespace MoviesAPI.Services
       _genres = new List<Genre>()
       {
         new Genre() {Id=1, Name="Comedy"},
-        new Genre() {Id=2, Name="Drama"}
+        new Genre() {Id=2, Name="Drama"},
+        new Genre() {Id=3, Name="Sci-fi"}
 
       };
             this.logger = logger;
