@@ -18,7 +18,7 @@ import { EditActorComponent } from './actors/edit-actor/edit-actor.component';
 
 import { EditGenresComponent } from './genres/edit-genres/edit-genres.component';
 import { CreateComponent } from './genres/create/create.component';
-import { IndexGenresComponent } from './index-genres/index-genres.component';
+import { IndexGenresComponent } from './genres/index-genres/index-genres.component';
 
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { CreateMovieComponent } from './movies/create-movie/create-movie.component';

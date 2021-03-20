@@ -6,7 +6,7 @@ import { IndexActorsComponent } from './actors/index-actors/index-actors.compone
 import { CreateComponent } from './genres/create/create.component';
 import { EditGenresComponent } from './genres/edit-genres/edit-genres.component';
 import { HomeComponent } from './home/home.component';
-import { IndexGenresComponent } from './index-genres/index-genres.component';
+import { IndexGenresComponent } from './genres/index-genres/index-genres.component';
 import { CreateTheaterComponent } from './movie-theater/create-theater/create-theater.component';
 import { IndexTheaterComponent } from './movie-theater/index-theater/index-theater.component';
 import { CreateMovieComponent } from './movies/create-movie/create-movie.component';
