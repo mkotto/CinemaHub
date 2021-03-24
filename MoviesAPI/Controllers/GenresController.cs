@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MoviesAPI.Entities;
 using MoviesAPI.Filters;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,11 +15,13 @@ namespace MoviesAPI.Controllers
     {
         private readonly IRepository repository;
         private readonly ILogger<GenresController> logger;
+        private readonly ApplicationDbContext dbContext;
 
-        public GenresController(IRepository repository, ILogger<GenresController> logger)
+        public GenresController(IRepository repository, ILogger<GenresController> logger, ApplicationDbContext dbContext)
         {
             this.repository = repository;
             this.logger = logger;
+            this.dbContext = dbContext;
         }
 
 
@@ -35,7 +34,7 @@ namespace MoviesAPI.Controllers
         public async Task<ActionResult<List<Genre>>> Get()
         {
             this.logger.LogInformation("Getting all genres");
-            return await repository.GetAllGenres();
+            return await dbContext.Genres.ToListAsync();
         }
 
         //[HttpGet("{id:int}/{param2=name}")]
@@ -65,8 +64,9 @@ namespace MoviesAPI.Controllers
         //    return Ok(genre);
         //}
         [HttpPost]
-        public ActionResult Post([FromBody] Genre genre) {
-            repository.AddGenre(genre);
+        public async Task<ActionResult> Post([FromBody] Genre genre) {
+            dbContext.Add(genre);
+            await dbContext.SaveChangesAsync();
             return NoContent();
         }
         [HttpPut]
