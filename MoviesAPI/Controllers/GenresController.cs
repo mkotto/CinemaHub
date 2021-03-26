@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MoviesAPI.DTOs;
 using MoviesAPI.Entities;
 using MoviesAPI.Filters;
 using System.Collections.Generic;
@@ -16,12 +18,14 @@ namespace MoviesAPI.Controllers
         private readonly IRepository repository;
         private readonly ILogger<GenresController> logger;
         private readonly ApplicationDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public GenresController(IRepository repository, ILogger<GenresController> logger, ApplicationDbContext dbContext)
+        public GenresController(IRepository repository, ILogger<GenresController> logger, ApplicationDbContext dbContext, IMapper mapper)
         {
             this.repository = repository;
             this.logger = logger;
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
 
@@ -31,10 +35,12 @@ namespace MoviesAPI.Controllers
         [ResponseCache(Duration = 60)]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [ServiceFilter(typeof(ActionFilters))]
-        public async Task<ActionResult<List<Genre>>> Get()
+        public async Task<ActionResult<List<GenreDTO>>> Get()
         {
             this.logger.LogInformation("Getting all genres");
-            return await dbContext.Genres.ToListAsync();
+            var genres = await dbContext.Genres.ToListAsync();
+
+            return mapper.Map<List<GenreDTO>>(genres);
         }
 
         //[HttpGet("{id:int}/{param2=name}")]
@@ -64,7 +70,8 @@ namespace MoviesAPI.Controllers
         //    return Ok(genre);
         //}
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] Genre genre) {
+        public async Task<ActionResult> Post([FromBody] GenreCreationDTO genreCreationDTO) {
+            var genre = mapper.Map<Genre>(genreCreationDTO);
             dbContext.Add(genre);
             await dbContext.SaveChangesAsync();
             return NoContent();
