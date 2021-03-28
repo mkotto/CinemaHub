@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { genreDTO } from '../genres.model';
 import { GenresService } from '../genres.service';
 
 @Component({
@@ -10,10 +11,15 @@ export class IndexGenresComponent implements OnInit {
 
   constructor(private genresService: GenresService) { }
 
+  genres: genreDTO[];
+  columnsToDisplay = ['name', 'action'];
+
   ngOnInit(): void {
 
     const genres = this.genresService.getAll().subscribe( genres => {
-      console.log(genres);
+      this.genres = genres;
+
+      console.log(this.genres);
     });
   }
 
