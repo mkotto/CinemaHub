@@ -77,8 +77,12 @@ namespace MoviesAPI.Controllers
             await dbContext.SaveChangesAsync();
             return NoContent();
         }
-        [HttpPut]
-        public ActionResult Put([FromBody] Genre genre) {
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(int id, [FromBody] GenreCreationDTO genreCreationDTO) {
+            var genre = mapper.Map<Genre>(genreCreationDTO);
+            genre.Id = id;
+            this.dbContext.Entry(genre).State = EntityState.Modified;
+            await this.dbContext.SaveChangesAsync();
             return NoContent();
         }
         [HttpDelete]
