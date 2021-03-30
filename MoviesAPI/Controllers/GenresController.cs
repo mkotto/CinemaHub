@@ -44,6 +44,8 @@ namespace MoviesAPI.Controllers
             return mapper.Map<List<GenreDTO>>(genres);
         }
 
+
+
         //[HttpGet("{id:int}/{param2=name}")]
         //[HttpGet("{id:int}")]//api/genres/get
         [HttpGet("{Id:int}", Name = "getGenre")]
@@ -58,6 +60,17 @@ namespace MoviesAPI.Controllers
                 return NotFound();
             }
             return genre;
+        }
+
+        [HttpGet("{Id:int}", Name = "geGenre")]
+        public async Task<ActionResult<GenreDTO>> Get(int id)
+        {
+            var genre = await this.dbContext.Genres.FirstOrDefaultAsync(x => x.Id == id);
+            if(genre == null)
+            {
+                return NotFound();
+            }
+            return mapper.Map<GenreDTO>(genre);
         }
 
         //[HttpGet("{id:int}")]//api/genres/get
