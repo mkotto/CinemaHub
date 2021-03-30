@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { genreCreationDTO } from '../genres.model';
+import { GenresService } from '../genres.service';
 
 @Component({
   selector: 'app-edit-genres',
@@ -9,7 +10,7 @@ import { genreCreationDTO } from '../genres.model';
 })
 export class EditGenresComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private genreService: GenresService) { }
 
   temp;
 
