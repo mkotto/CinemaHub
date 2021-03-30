@@ -62,7 +62,7 @@ namespace MoviesAPI.Controllers
             return genre;
         }
 
-        [HttpGet("{Id:int}", Name = "geGenre")]
+        [HttpGet("{Id:int}", Name = "getGenre")]
         public async Task<ActionResult<GenreDTO>> Get(int id)
         {
             var genre = await this.dbContext.Genres.FirstOrDefaultAsync(x => x.Id == id);
