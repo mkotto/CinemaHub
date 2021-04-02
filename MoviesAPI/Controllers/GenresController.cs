@@ -8,10 +8,12 @@ using MoviesAPI.Filters;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Cors;
 
 namespace MoviesAPI.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("AllowOrigin")]
     [ApiController]
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class GenresController : ControllerBase
@@ -61,7 +63,8 @@ namespace MoviesAPI.Controllers
             }
             return genre;
         }
-
+        [Route("GetAllAuthor")]
+        [EnableCors("AllowOrigin")]
         [HttpGet("{Id:int}", Name = "getGenre")]
         public async Task<ActionResult<GenreDTO>> Get(int id)
         {

@@ -26,6 +26,7 @@ namespace MoviesAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddCors(
                     options =>
@@ -34,6 +35,7 @@ namespace MoviesAPI
                             var frontendURL = Configuration.GetValue<string>("frontend_url");
                             builders.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
                         });
+                        options.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
                     }
                 );
             services.AddAutoMapper(typeof(Startup));
@@ -62,8 +64,10 @@ namespace MoviesAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors();
-
+            app.UseCors(
+                    x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+                );
+            app.UseHttpsRedirection();
             app.UseResponseCaching();
 
             app.UseAuthorization();
