@@ -36,10 +36,20 @@ namespace MoviesAPI
             {
                 options.Filters.Add(typeof(CustomExceptionFilter));
             });
-
+                        services.AddCors(
+                    options =>
+                    {
+                        options.AddDefaultPolicy( builders => {
+                            var frontendURL = Configuration.GetValue<string>("frontend_url");
+                            builders.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+                        });
+                        options.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                        
+                    }
+                );
             services.AddResponseCaching();
             services.AddSingleton<IRepository, InMemoryRepository>();
-            services.AddTransient<ActionFilters>();
+            services.AddTransient<ActionFilter>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
@@ -52,6 +62,7 @@ namespace MoviesAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
+            app.UseCors();
             app.Use(async (context, next) =>
             {
                 using (var swapStream = new MemoryStream())
