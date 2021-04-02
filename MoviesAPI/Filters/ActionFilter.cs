@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MoviesAPI.Filters
 {
-    public class ActionFilters : IActionFilter
+    public class ActionFilter : IActionFilter
     {
-        private readonly ILogger<ActionFilters> logger;
+        private readonly ILogger<ActionFilter> logger;
 
-        public ActionFilters(ILogger<ActionFilters> logger)
+        public ActionFilter(ILogger<ActionFilter> logger)
         {
             this.logger = logger;
         }
