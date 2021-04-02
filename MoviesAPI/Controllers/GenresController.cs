@@ -6,6 +6,12 @@ using MoviesAPI.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using System.Linq;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using MoviesAPI.DTOs;
+
 namespace MoviesAPI.Controllers
 {
     [Route("api/genres")]
@@ -15,11 +21,15 @@ namespace MoviesAPI.Controllers
     {
         private readonly IRepository repository;
         private readonly ILogger<GenresController> logger;
+        private readonly ApplicationDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public GenresController(IRepository repository, ILogger<GenresController> logger)
+        public GenresController(IRepository repository, ILogger<GenresController> logger, ApplicationDbContext dbContext, IMapper mapper)
         {
             this.repository = repository;
             this.logger = logger;
+            this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         [HttpGet] // api/genres
@@ -56,25 +66,37 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Genre genre)
+        public async Task<ActionResult> Post([FromBody] GenreCreationDTO genreCreationDTO)
         {
-            repository.AddGenre(genre);
-
-            return new CreatedAtRouteResult("getGenre", new { Id = genre.Id }, genre);
-        }
-
-        [HttpPut]
-        public ActionResult Put([FromBody] Genre genre)
-        {
-
+            var genre = mapper.Map<Genre>(genreCreationDTO);
+            dbContext.Add(genre);
+            await dbContext.SaveChangesAsync();
             return NoContent();
         }
 
-        [HttpDelete]
-        public ActionResult Delete()
-        {
-            return NoContent();
 
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(int id, [FromBody] GenreCreationDTO genreCreationDTO)
+        {
+            var genre = mapper.Map<Genre>(genreCreationDTO);
+            genre.Id = id;
+            this.dbContext.Entry(genre).State = EntityState.Modified;
+            await this.dbContext.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var genre = await dbContext.Genres.FirstOrDefaultAsync(x => x.Id == id);
+            if(genre == null)
+            {
+                return NotFound();
+            }
+
+            dbContext.Remove(genre);
+            await dbContext.SaveChangesAsync();
+            return NoContent();
         }
     }
 }
